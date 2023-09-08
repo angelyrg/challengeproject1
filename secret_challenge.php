@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <script src="hello.js"></script>
+    <script src="test.js"></script>
     <script>
         particlesJS('particles-container', {
             "particles": {
