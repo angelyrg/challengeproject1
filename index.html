@@ -39,6 +39,7 @@
             color: #fff;
             outline: none;
             margin-top: 20px;
+            margin-bottom: 5px;
             padding: 10px 0;
         }
 
@@ -56,10 +57,19 @@
             width: 100%; /* Ancho igual al del input */
             border-radius: 5px;
             cursor: pointer;
+            transition: transform 0.2s;
         }
 
         .custom-btn:hover{
             background-color: #88cc04;
+        }
+
+        .custom-btn:active {
+            transform: scale(0.95);
+        }
+
+        .custom-btn:focus {
+            outline:none;
         }
 
         /* Estilos para el contenedor de partículas */
@@ -79,14 +89,62 @@
     <div id="particles-container"></div>
     <div class="card">
         <h4 class="text-center">Hola amigo :)</h4>
-        <input type="text" class="input-text" placeholder="Código de validación" autofocus>
+        <input type="text" class="input-text" name="code" id="code" placeholder="Código de validación" autofocus>
+        <small id="msg"></small>
         <div class="btn-wrapper">
-            <button class="custom-btn">Validar</button>
+            <button class="custom-btn" id="validate_button">Validar</button>
         </div>
+        <!-- <form action="" method="post">
+        </form> -->
     </div>
 
     <script src="test.js"></script>
     <script>
+
+        const validate_btn = document.getElementById("validate_button");
+        validate_btn.addEventListener('click', function(e){            
+            const code_input = document.getElementById('code');
+            if (code_input.value == ''){
+                return;
+            }            
+            const data = { input_code: code_input.value };
+            fetch('validate_code.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La solicitud no fue exitosa');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const valid_code = data.valid;
+                console.log(valid_code);
+
+                const input_text = document.getElementById("code");
+                const msg = document.getElementById("msg");
+                if (!valid_code){
+                    input_text.style.borderBottomColor="#E74C3C";
+                    msg.style.color="#E74C3C";
+                    msg.textContent  = "Código inválido";
+                    
+                }else{
+                    input_text.style.borderBottomColor="#97e304";
+                    msg.style.color="#97e304";
+                    msg.textContent  = "Código válido";
+                }
+                
+                
+            })
+            .catch(error => {
+                console.error('Ocurrió un error:', error);
+            });
+
+        });
+
+
         particlesJS('particles-container', {
             "particles": {
                 "number": {
