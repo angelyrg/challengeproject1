@@ -14,4 +14,4 @@ console.log(`%c
       | |           | | |   )))
       |_@           |_|_@    ))
      /_/           /_/_/
-Valquiria quiere decirte algo:`, 'color:#9acc14; font-family: monospace');
+Valquiria quiere decirte algo. Mantequillaaaa!!!!!`, 'color:#9acc14; font-family: monospace');
