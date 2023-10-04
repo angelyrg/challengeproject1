@@ -20,21 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo 'Método no permitido';
 }
 
-
-function generateCode() {
-    $hash_code = password_hash("Challenge1", PASSWORD_DEFAULT);
-
-    $partes = explode('$10$', $hash_code);
-
-    $algorithm = $partes[0];
-    $hash = $partes[1];
-    $timestamp = time();
-
-    $finalCode = $algorithm.$timestamp."$10$".$hash;
-    return $finalCode;
-}
-
-
 function validateCode($code) {
 
     $partes = explode('$10$', $code);
@@ -49,7 +34,7 @@ function validateCode($code) {
     $getOriginalPass = "$2y$10$".$hash;
 
     $timestampActual = time();
-    return $timestampActual <= ((int)$getTimestamp + 3600) && password_verify('Challenge1', $getOriginalPass);
+    return $timestampActual <= ((int)$getTimestamp + 60) && password_verify('Challenge1', $getOriginalPass);
 }
 
 
