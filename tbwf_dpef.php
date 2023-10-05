@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $json = file_get_contents('php://input');
     $data = json_decode($json);
 
-    if (isset($data->c)) {
+    if (isset($data->c) && isset($data->a)) {
         $input_code = $data->c;
         $ip = $data->a;
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         //TOUPDATE: Los datos de conección deben ser diferentes
-        $link = mysqli_connect('localhost', 'root', '', 'web_sistemasunh');
+        $link = mysqli_connect('localhost', 'root', '', 'db_name');
 
         if (!$link) {
             die('Could not connect: ');

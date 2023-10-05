@@ -309,7 +309,7 @@ Valkyrie quiere decirte algo:\nEsta página carga un archivo js interesante.`, '
                     jsConfetti.addConfetti()
                     setTimeout(()=>{form_container.classList.add("hide")}, 1000);
                     setTimeout(()=>{
-                        form_container.innerHTML = `<p>Lograste completar el challenge.</p><img src="edc2181b40e3b.gif" class="img-fluid px-5" alt=""><span>Deberías estar orgulloso de ti :)</span>`;
+                        form_container.innerHTML = `<p>Lograste completar el challenge.</p><img src="edc2181b40e3b.gif" class="img-fluid px-5" alt="" draggable="false"><span>Deberías estar orgulloso de ti :)</span>`;
                         form_container.classList.add("show");
                     }, 2500);
                 }
